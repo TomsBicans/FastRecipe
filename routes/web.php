@@ -25,3 +25,7 @@ Route::get('/search', function () {
     return view('search');
 });
 
+Route::get('/recipe', function () {
+    return view('recipe');
+});
+
