@@ -6,7 +6,7 @@
         {!! Form::open(['url' => '/submit']) !!}
         <div class="form-group text-center">
             <strong>{{Form::label('calories', 'Calories , kcal')}}</strong>
-            {{Form::number('calories', '', ['class' => 'form-control' , 'placeholder' => 'Enter wanted calories' , 'min'=>0])}}
+            {{Form::number('calories', '', ['class' => 'form-control' , 'placeholder' => '' , 'min'=>0])}}
         </div>
         <div class="text-center">
             {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}

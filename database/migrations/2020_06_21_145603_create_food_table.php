@@ -20,6 +20,7 @@ class CreateFoodTable extends Migration
             $table->decimal('protein', 8, 2);
             $table->decimal('carbohydrate', 8, 2);
             $table->decimal('fat', 8, 2);
+            $table->decimal('calories', 8, 2);
         });
     }
 
