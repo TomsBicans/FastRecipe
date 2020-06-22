@@ -22,6 +22,7 @@ class CreateRecipeFoodTable extends Migration
             $table->bigInteger('food_id')->unsigned();
                 $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
             
+            $table->decimal('amount', 8, 2);
             $table->decimal('calories', 8, 2);
         });
     }

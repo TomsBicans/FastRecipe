@@ -29,3 +29,7 @@ Route::get('/recipe', function () {
     return view('recipe');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
