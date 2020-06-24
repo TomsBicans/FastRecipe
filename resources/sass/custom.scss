@@ -9,14 +9,16 @@ and open the template in the editor.
 */
 
 body{
-    margin-bottom: 30px; /* Augstums virs kājenes */
+    //margin-bottom: 30px; /* Augstums virs kājenes */
+    min-height: 100%;
 }
 
 #footer{
-    position: absolute;
-    bottom: 0;
+    clear: both;
+    position: relative;
     width: 100%;
     height: 30px;
+    margin-top: -30px;
     line-height: 30px;
     color:#fff;
     background:#222;

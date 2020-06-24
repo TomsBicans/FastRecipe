@@ -15,7 +15,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -34,18 +38,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Main <span class="sr-only">(current)</span></a>
+                            <a class="nav-link {{Request::is('/') ? 'active' : ''}}" href="/">Main <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/browse">Browse</a>
+                            <a class="nav-link {{Request::is('browse') ? 'active' : ''}}" href="/browse">Browse</a>
                         </li>
                         @if (auth::check())
                         <li class="nav-item">
-                            <a class="nav-link" href="/recipe">Create recipe</a>
+                            <a class="nav-link {{Request::is('recipe/create') ? 'active' : ''}}" href="/recipe/create">Create recipe</a>
                         </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="/search">Search</a>
+                            <a class="nav-link {{Request::is('search') ? 'active' : ''}}" href="/search">Search</a>
                         </li>
                     </ul>
 
@@ -87,16 +91,19 @@
 
         <main class="py-4">
             @if (Request::is('/'))
-                @include('inc.showcase');
+                @include('inc.showcase')
             @endif
             
+            @include('inc.messages')
             @yield('content')
         </main>
     </div>
+    <!--
     <footer id="footer" class="text-center">
             <div class="container">
                 <p class="text-muted">Copyright 2020 &copy; FastRecipe</p>
             </div>
     </footer>
+    -->
 </body>
 </html>

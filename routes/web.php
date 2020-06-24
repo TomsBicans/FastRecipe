@@ -13,23 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'HomeController@main');
 
-Route::get('/browse', function () {
-    return view('browse');
-});
+Route::get('/browse', 'SearchController@browse');
+Route::get('/search', 'SearchController@search');
+Route::post('/submit', 'SearchController@main');
 
-Route::get('/search', function () {
-    return view('search');
-});
-
-Route::get('/recipe', function () {
-    return view('recipe');
-});
+Route::resource('recipe', 'RecipeController');
+//Route::get('/recipe/{id}', 'RecipeController@show');
+//Route::get('/recipe/create', 'RecipeController@create');
 
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

@@ -22,11 +22,11 @@ class UserSeeder extends Seeder
     }
     public function run()
     {
-        self::addUser('Admin', 'admin@fastrecipe.net', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 1);
-        self::addUser('Toms', 'tomsbicans@gmail.com', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 2);
-        self::addUser('Zigfrids', 'zigfrids@inbox.lv', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 2);
-        self::addUser('Darzenis', 'darzenis@inbox.lv', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 2);
-        self::addUser('Markuss', 'marks123@cisco.com', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 2);
-        self::addUser('Dzenis', 'asais@ee.lv', '$2y$10$gAixpK/W/bAT.lTF8/R6xOuQHRoqxBYvmeT2ImFJW5P9Q2wpSW/M2', 2);
+        self::addUser('Admin', 'admin@fastrecipe.net', Hash::make('admin'), 1);
+        self::addUser('Toms', 'tomsbicans@gmail.com', Hash::make('password'), 2);
+        self::addUser('Zigfrids', 'zigfrids@inbox.lv', Hash::make('password'), 2);
+        self::addUser('Darzenis', 'darzenis@inbox.lv', Hash::make('password'), 2);
+        self::addUser('Markuss', 'marks123@cisco.com', Hash::make('password'), 2);
+        self::addUser('Dzenis', 'asais@ee.lv', Hash::make('password'), 2);
     }
 }
