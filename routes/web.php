@@ -20,8 +20,8 @@ Route::get('/search', 'SearchController@search');
 Route::post('/submit', 'SearchController@main');
 
 Route::resource('recipe', 'RecipeController');
-//Route::get('/recipe/{id}', 'RecipeController@show');
-//Route::get('/recipe/create', 'RecipeController@create');
+
+Route::get('recipe/{$id}', 'RecipeController@show')->name('recipe.show');
 
 
 Auth::routes();

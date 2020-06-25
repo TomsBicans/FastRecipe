@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Recipe;
 use App\Food;
@@ -25,19 +26,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        $foods = Food::all('food_name', 'protein', 'carbohydrate', 'fat', 'calories');
-        /*
-        $compactFoods = [];
-        foreach($foods as $food)
-        {
-            $compactFoods[$food->food_name] => array(
-                'food_name' => $food->food_name, 
-                'protein' => $food->protein,
-                'carbohydrate' => $food->carbohydrate,
-                'fat' => $food->fat,
-                'calories' => $food->calories)
-        }
-         */
+        $foods = Food::all('id','food_name', 'protein', 'carbohydrate', 'fat', 'calories');
         return view('recipecreate')->with('foods', $foods);
     }
 
@@ -49,14 +38,25 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $data = $request->except('_token');
+        $foodamounts = $request->input('foodamounts'); 
         $rules = array(
             'recipe_name' => 'required|min:2|max:50'
         );
         $this->validate($request, $rules);
         
         $recipe = new Recipe();
-        $recipe->recipe_name = $request->recipe_name;
         
+        $recipe->recipe_name = $request->recipe_name;
+        $recipe->user_id = Auth::id();
+        $recipe->save();
+        
+        for($i = 0; $i<$foodamounts; $i++)
+        {
+            $recipe->foods()->attach([$request->input('food')[$i] =>  ['amount' => $request->input('foodamount')[$i]]]);
+        }
+        return redirect()->route('recipe.show', $recipe->id);
     }
 
     /**
@@ -69,7 +69,7 @@ class RecipeController extends Controller
     {
         //$recipe = DB::table('recipes')->find($id);
         //if(count($recipe) == 1)
-           return view('recipe', array('recipe' => Recipe::findOrFail($id)));
+        return view('recipe', array('recipe' => Recipe::findOrFail($id)));
     }
 
     /**
